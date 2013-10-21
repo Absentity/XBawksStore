@@ -104,6 +104,12 @@ public class XBawksGameStoreMain {
 		for (XBawksGame g : results) {
 			out.write("\t\t" + ++i + ") ");
 			
+			out.write(g.getName());
+			
+			// Indent fields to line up with game name
+			if (withDate || withRating || withPlayers)
+				out.write("\n\t\t   ");
+			
 			if (withDate)
 				out.write(df.format(g.getReleaseDate()) + "\t");
 
@@ -113,12 +119,10 @@ public class XBawksGameStoreMain {
 			if (withRating)
 				out.write(g.getRating() + " / 10.0");
 			
-			// Indent name to next line
-			if (withDate || withRating || withPlayers)
-				out.write("\n\t\t   ");
-			
-			out.write(g.getName() + "\n\n");
+			out.write("\n\n");
 		}
+		
+		out.write("\n");
 	}
 
 }
