@@ -4,8 +4,7 @@ import java.util.Comparator;
 public class HighestRatingComparator implements Comparator<XBawksGame> {
 
 	@Override
-	public int compare(XBawksGame arg0, XBawksGame arg1) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compare(XBawksGame g1, XBawksGame g2) {
+		return Float.compare(g2.getRating(), g1.getRating());
 	}
 }

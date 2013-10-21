@@ -42,7 +42,7 @@ public class XBawksGame {
 		return numPlayers;
 	}
 	
-	public boolean getIsMultiplayer() {
+	public boolean isMultiplayer() {
 		return isMultiplayer;
 	}
 	
