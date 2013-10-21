@@ -1,6 +1,6 @@
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -45,11 +45,18 @@ public class GameDatabaseReader {
 		
 		String name = sc.next();
 		Date releaseDate = df.parse(sc.next());
-		/* Parse slash '/' delimited genres here. */
 		
-//		Genre genre = Genre.parseGenre(sc.next());
+		// Parse slash '/' delimited genres here.
+		List<Genre> genres = new ArrayList<Genre>();
+		String[] tokens = sc.nextLine().split("/");
+		for (String t : tokens) {
+			genres.add(Genre.valueOf(t.trim()));
+		}
+		
 		float rating = sc.nextFloat();
+		
 		int numPlayers = sc.nextInt();
+		
 		boolean isMultiplayer = numPlayers > 1;
 		
 		XBawksGame game = new XBawksGame(name, releaseDate, genres, rating, numPlayers, isMultiplayer);

@@ -9,12 +9,5 @@ public enum Genre {
 	INDIE,
 	ACTION,
 	FPS,
-	CASUAL;
-
-	public static Genre parseGenre(String genreString) {
-		// TODO uppercase genreString
-		// TODO foreach genre in Genre.getValues() if genreString = GenreString
-		return null;
-	}
-	
+	CASUAL;	
 }
