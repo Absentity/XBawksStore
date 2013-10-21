@@ -6,8 +6,8 @@
  */
 public enum Genre {
 	RPG,
-	INDIE,
-	ACTION,
+	Indie,
+	Action,
 	FPS,
-	CASUAL;	
+	Casual;	
 }

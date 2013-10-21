@@ -16,12 +16,14 @@ public class GameDatabaseReader {
 	
 	public GameDatabaseReader(String databaseFile) {
 		try {
-			sc = new Scanner(new File(databaseFile));
+			String path = System.getProperty("user.dir") + "/" + databaseFile;
+			sc = new Scanner(new File(path));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		numGames = sc.nextInt();
+		
+		listGames = new ArrayList<XBawksGame>();
 	}
 	
 	/**
@@ -48,13 +50,16 @@ public class GameDatabaseReader {
 	 * @throws ParseException when can't parse a date
 	 */
 	public XBawksGame readGame() throws ParseException {
-		DateFormat df = DateFormat.getDateInstance();
+		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
 		
-		String name = sc.next();
+		sc.skip("\\s+");
+		String name = sc.nextLine();
 		Date releaseDate = df.parse(sc.next());
 		
 		// Parse slash '/' delimited genres here.
 		List<Genre> genres = new ArrayList<Genre>();
+		
+		sc.skip("\\s+");
 		String[] tokens = sc.nextLine().split("/");
 		for (String t : tokens) {
 			genres.add(Genre.valueOf(t.trim()));
@@ -63,11 +68,9 @@ public class GameDatabaseReader {
 		float rating = sc.nextFloat();
 		
 		int numPlayers = sc.nextInt();
-		
 		boolean isMultiplayer = numPlayers > 1;
 		
-		XBawksGame game = new XBawksGame(name, releaseDate, genres, rating, numPlayers, isMultiplayer);
-		return game;
+		return new XBawksGame(name, releaseDate, genres, rating, numPlayers, isMultiplayer);
 	}
 
 	public void close() {

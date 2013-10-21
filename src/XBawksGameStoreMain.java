@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.List;
 
 
@@ -11,6 +12,7 @@ public class XBawksGameStoreMain {
 	static final boolean WITH_RATING = true;
 
 	private static BufferedWriter out;
+	private static DateFormat df;
 
 	/**
 	 * @param args Arrrrrrrrrgs!!! that don't do anything and are ignored
@@ -24,6 +26,7 @@ public class XBawksGameStoreMain {
 		/* Setup an outgoing file to save our querying results */
 		try {
 			out = new BufferedWriter(new FileWriter("output.txt"));
+			df = DateFormat.getDateInstance(DateFormat.SHORT);
 		
 			/* Ideally, the client would never create these, and would have
 			 * limited querying functionality, but I'm pressed for time and
@@ -102,17 +105,19 @@ public class XBawksGameStoreMain {
 			out.write("\t\t" + ++i + ") ");
 			
 			if (withDate)
-				out.write(g.getReleaseDate() + " ");
+				out.write(df.format(g.getReleaseDate()) + "\t");
+
+			if (withPlayers)
+				out.write(g.getNumPlayers() + " players\t");
 			
 			if (withRating)
-				out.write(g.getRating() + " ");
+				out.write(g.getRating() + " / 10.0");
 			
-			out.write(g.getName() + " ");
+			// Indent name to next line
+			if (withDate || withRating || withPlayers)
+				out.write("\n\t\t   ");
 			
-			if (withPlayers)
-				out.write(g.getNumPlayers());
-			
-			out.write("\n");
+			out.write(g.getName() + "\n\n");
 		}
 	}
 

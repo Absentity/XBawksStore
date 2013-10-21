@@ -27,7 +27,7 @@ public class StoreFront {
 		if (forMultiplayer)
 			ListFilters.byMultiplayer(searchList);
 		
-		return searchList.subList(0, 3);
+		return searchList.subList(0, (searchList.size() >= 3) ? 3 : searchList.size());
 	}
 	
 	/**
