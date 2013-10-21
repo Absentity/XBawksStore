@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -13,7 +15,12 @@ public class GameDatabaseReader {
 	private List<XBawksGame> listGames;
 	
 	public GameDatabaseReader(String databaseFile) {
-		sc = new Scanner(databaseFile);
+		try {
+			sc = new Scanner(new File(databaseFile));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		numGames = sc.nextInt();
 	}
 	
