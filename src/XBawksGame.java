@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Bret Wood
@@ -7,15 +8,15 @@ import java.util.Date;
 public class XBawksGame {
 	private String name;
 	private Date releaseDate;
-	private Genre genre;
+	private List<Genre> genres;
 	private float rating;
 	private int numPlayers;
 	private boolean isMultiplayer;
 	
-	public XBawksGame(String name, Date releaseDate, Genre genre, float rating, int numPlayers, boolean isMultiplayer) {
+	public XBawksGame(String name, Date releaseDate, List<Genre> genres, float rating, int numPlayers, boolean isMultiplayer) {
 		this.name = name;
 		this.releaseDate = releaseDate;
-		this.genre = genre;
+		this.genres = genres;
 		this.rating = rating;
 		this.numPlayers = numPlayers;
 		this.isMultiplayer = isMultiplayer;
@@ -29,8 +30,8 @@ public class XBawksGame {
 		return releaseDate;
 	}
 	
-	public Genre getGenre() {
-		return genre;
+	public List<Genre> getGenres() {
+		return genres;
 	}
 	
 	public float getRating() {

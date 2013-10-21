@@ -22,9 +22,7 @@ public class GameDatabaseReader {
 	 * of the game database
 	 * @return a list of XBawksGames
 	 */
-	public List<XBawksGame> readGames() {
-		listGames.clear();
-		
+	public List<XBawksGame> readGames() {		
 		for (int i = 0; i < numGames; ++i) {
 			try {
 				XBawksGame game = readGame();
